@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+<style>
+    body{
+        background-color: yellow; 
+        text-align: center;
+    }
+    </style>
+<script>
+    let a;
+    let k;
+function Weather(){
+    k=document.getElementById("o").value;
+    let url="https://api.openweathermap.org/data/2.5/weather?q="+k+"&appid=4a1f8a61b74546825af1e0be106e797b&units=metric#";
+    let p=fetch(url);
+    p.then((response)=>{
+        return response.json();
+    }).then((value)=>{
+        console.log(value);
+        a=value;
+        WeatherObject();
+    })
+}
+
+function WeatherObject(){
+    console.log(a.cod)
+    if(a.cod !=200){
+            document.getElementById("Index").innerHTML="Not Found";
+return;
+    }
+    console.log(a.weather[0].id)
+    document.getElementById("a").value=a.weather[0].id;
+    document.getElementById("c").value=a.main.temp_max;
+    document.getElementById("d").value=a.main.pressure;
+    document.getElementById("e").value=a.main.humidity;
+    document.getElementById("").value=a.cod;
+    console.log(a.weather[0].icon)
+    let link="http://openweathermap.org/img/w/"+a.weather[0].icon+".png";
+    document.getElementById("img").src=link;
+    
+}
+    </script>
+<body>
+    <div>
+    <input type="text" id="o"></input></div>
+    <h1 id="Index"></h1>
+        <button onclick="Weather()">Get Weather</button>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-4">Id<input type="text" class="col-md-4" id="a" placeholder="id">
+        </div>
+        <div class="col-md-4">Temp_max<input type="text" class="col-md-4" id="c">
+        </div>
+        <div class="col-md-4">Pressure<input type="text" class="col-md-4"id="d">
+        </div>
+    </div>
+
+    <br>
+        <br>
+    <div class="row">
+    <div class="col-md-4">Humidity<input type="text" class="col-md-4" id="e" >
+    </div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4"><img id="img">
+    </div>
+</div>
+<br>
+<br>
+<br>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</html>

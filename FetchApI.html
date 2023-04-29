@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<style>
+    body{
+        background-color: blueviolet;
+        text-align: center;
+    }
+    .button{
+        color: black;
+    }
+    </style>
+<script>
+let k=[];
+function A(){
+    let url="https://gist.githubusercontent.com/jitendravns/96f932b76464eb66826bcf48b0a2df10/raw/6b557e0534db2e1cc83de9adb8ed5125972b591f/gistfile1.txt";
+let p=fetch(url);
+p.then((response)=>{
+    return response.json();
+}).then((value)=>{
+    console.log(value);
+    k=value;
+    B();
+})
+}
+
+
+
+function B(){
+    document.getElementById("a").value=k.Name;
+    document.getElementById("b").value=k.Age;
+    document.getElementById("c").value=k.Qualification;
+    document.getElementById("d").value=k.MaritalStatus;
+}
+fetchapi();
+</script>
+<body>
+    <input type="text" id="a"></input><br><br>
+    <input type="text" id="b"></input><br><br>
+    <input type="text" id="c"></input><br><br>
+    <input type="text" id="d"></input><br><br>
+    <button onclick="A()" class="btn btn-danger">Click</button>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</html>
